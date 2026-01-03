@@ -6,7 +6,7 @@ export default function TagChips({ tags }) {
       {tags.map((tag) => (
         <span
           key={tag}
-          className="px-2 py-0.5 text-xs bg-gray-100 text-gray-600 rounded"
+          className="px-2 py-0.5 text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded"
         >
           {tag}
         </span>

@@ -51,24 +51,24 @@ export default function LibraryPage() {
   };
 
   const selectClass =
-    'px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none bg-white';
+    'px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none bg-white dark:bg-gray-800 dark:text-white';
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-900">Library</h1>
-        <span className="text-gray-500">{problems.length} problems</span>
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Library</h1>
+        <span className="text-gray-500 dark:text-gray-400">{problems.length} problems</span>
       </div>
 
       {/* Filters */}
-      <div className="flex flex-wrap items-center gap-4 bg-white p-4 rounded-lg border border-gray-200">
+      <div className="flex flex-wrap items-center gap-4 bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
         <input
           type="text"
           name="search"
           placeholder="Search by title..."
           value={filters.search}
           onChange={handleFilterChange}
-          className="flex-1 min-w-[200px] px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+          className="flex-1 min-w-[200px] px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none bg-white dark:bg-gray-800 dark:text-white dark:placeholder-gray-400"
         />
 
         <select
@@ -109,18 +109,18 @@ export default function LibraryPage() {
       </div>
 
       {error && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700">
+        <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 text-red-700 dark:text-red-400">
           Error: {error}
         </div>
       )}
 
       {loading ? (
         <div className="flex items-center justify-center h-64">
-          <div className="text-gray-500">Loading...</div>
+          <div className="text-gray-500 dark:text-gray-400">Loading...</div>
         </div>
       ) : problems.length === 0 ? (
-        <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 text-center">
-          <p className="text-gray-600 mb-4">No problems found</p>
+        <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 text-center">
+          <p className="text-gray-600 dark:text-gray-400 mb-4">No problems found</p>
           <Link
             to="/add"
             className="inline-block px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
@@ -129,36 +129,36 @@ export default function LibraryPage() {
           </Link>
         </div>
       ) : (
-        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
+        <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+          <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+            <thead className="bg-gray-50 dark:bg-gray-900">
               <tr>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                   Problem
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                   Difficulty
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                   Due Date
                 </th>
-                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200">
+            <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
               {problems.map((problem) => {
                 const isOverdue = new Date(problem.next_due_date) < new Date();
                 return (
-                  <tr key={problem.id} className="hover:bg-gray-50">
+                  <tr key={problem.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
                     <td className="px-4 py-4">
                       <Link
                         to={`/problem/${problem.id}`}
-                        className="font-medium text-gray-900 hover:text-indigo-600"
+                        className="font-medium text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400"
                       >
                         {problem.title}
                       </Link>
@@ -170,13 +170,13 @@ export default function LibraryPage() {
                       <DifficultyBadge difficulty={problem.difficulty} />
                     </td>
                     <td className="px-4 py-4">
-                      <span className="text-sm text-gray-600">
+                      <span className="text-sm text-gray-600 dark:text-gray-300">
                         {getMasteryLabel(problem.mastery_stage)}
                       </span>
                     </td>
                     <td className="px-4 py-4">
                       <span
-                        className={`text-sm ${isOverdue ? 'text-red-600 font-medium' : 'text-gray-600'}`}
+                        className={`text-sm ${isOverdue ? 'text-red-600 dark:text-red-400 font-medium' : 'text-gray-600 dark:text-gray-300'}`}
                       >
                         {formatRelativeDate(problem.next_due_date)}
                       </span>
@@ -184,13 +184,13 @@ export default function LibraryPage() {
                     <td className="px-4 py-4 text-right">
                       <Link
                         to={`/problem/${problem.id}`}
-                        className="text-indigo-600 hover:text-indigo-800 text-sm mr-3"
+                        className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 text-sm mr-3"
                       >
                         View
                       </Link>
                       <button
                         onClick={() => handleDelete(problem.id)}
-                        className="text-red-600 hover:text-red-800 text-sm"
+                        className="text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-300 text-sm"
                       >
                         Delete
                       </button>

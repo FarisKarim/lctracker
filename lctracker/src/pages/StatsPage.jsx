@@ -25,14 +25,14 @@ export default function StatsPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="text-gray-500">Loading...</div>
+        <div className="text-gray-500 dark:text-gray-400">Loading...</div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700">
+      <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 text-red-700 dark:text-red-400">
         Error: {error}
       </div>
     );
@@ -40,7 +40,7 @@ export default function StatsPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-gray-900">Statistics</h1>
+      <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Statistics</h1>
 
       {/* Overview Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -70,29 +70,29 @@ export default function StatsPage() {
       </div>
 
       {/* Attempts Overview */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Activity</h2>
+      <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
+        <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Activity</h2>
         <div className="grid grid-cols-2 gap-8">
           <div>
-            <span className="text-3xl font-bold text-indigo-600">
+            <span className="text-3xl font-bold text-indigo-600 dark:text-indigo-400">
               {stats.attempts_last_7_days}
             </span>
-            <p className="text-gray-500">attempts in the last 7 days</p>
+            <p className="text-gray-500 dark:text-gray-400">attempts in the last 7 days</p>
           </div>
           <div>
-            <span className="text-3xl font-bold text-indigo-600">
+            <span className="text-3xl font-bold text-indigo-600 dark:text-indigo-400">
               {stats.attempts_last_30_days}
             </span>
-            <p className="text-gray-500">attempts in the last 30 days</p>
+            <p className="text-gray-500 dark:text-gray-400">attempts in the last 30 days</p>
           </div>
         </div>
       </div>
 
       {/* Weak Tags */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">
+      <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
+        <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
           Weak Areas
-          <span className="text-sm font-normal text-gray-500 ml-2">
+          <span className="text-sm font-normal text-gray-500 dark:text-gray-400 ml-2">
             (tags with {'>'} 40% fail rate)
           </span>
         </h2>
@@ -100,8 +100,8 @@ export default function StatsPage() {
         {stats.weak_tags.length === 0 ? (
           <div className="text-center py-8">
             <span className="text-4xl mb-2 block">💪</span>
-            <p className="text-gray-600">No weak areas identified!</p>
-            <p className="text-gray-500 text-sm">
+            <p className="text-gray-600 dark:text-gray-300">No weak areas identified!</p>
+            <p className="text-gray-500 dark:text-gray-400 text-sm">
               Keep practicing to maintain your skills.
             </p>
           </div>
@@ -110,24 +110,24 @@ export default function StatsPage() {
             {stats.weak_tags.map((tag) => (
               <div
                 key={tag.tag}
-                className="flex items-center justify-between p-3 bg-red-50 rounded-lg"
+                className="flex items-center justify-between p-3 bg-red-50 dark:bg-red-900/20 rounded-lg"
               >
                 <div className="flex items-center gap-3">
-                  <span className="px-2 py-1 bg-white text-gray-700 rounded text-sm font-medium">
+                  <span className="px-2 py-1 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded text-sm font-medium">
                     {tag.tag}
                   </span>
-                  <span className="text-sm text-gray-500">
+                  <span className="text-sm text-gray-500 dark:text-gray-400">
                     {tag.total_attempts} attempts
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="w-24 h-2 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
                     <div
                       className="h-full bg-red-500 rounded-full"
                       style={{ width: `${tag.fail_rate * 100}%` }}
                     />
                   </div>
-                  <span className="text-sm font-medium text-red-600">
+                  <span className="text-sm font-medium text-red-600 dark:text-red-400">
                     {Math.round(tag.fail_rate * 100)}% fail
                   </span>
                 </div>
@@ -138,11 +138,11 @@ export default function StatsPage() {
       </div>
 
       {/* Tips */}
-      <div className="bg-indigo-50 rounded-lg border border-indigo-100 p-6">
-        <h2 className="text-lg font-semibold text-indigo-900 mb-2">
+      <div className="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg border border-indigo-100 dark:border-indigo-800 p-6">
+        <h2 className="text-lg font-semibold text-indigo-900 dark:text-indigo-300 mb-2">
           Spaced Repetition Tips
         </h2>
-        <ul className="text-indigo-700 space-y-1 text-sm">
+        <ul className="text-indigo-700 dark:text-indigo-400 space-y-1 text-sm">
           <li>• Review problems when they're due for optimal retention</li>
           <li>• Mark problems as "Shaky" if you needed hints or took too long</li>
           <li>• Focus on weak areas to improve faster</li>
@@ -159,18 +159,18 @@ function StatCard({ label, value, icon, highlight = false, danger = false }) {
       className={`p-4 rounded-lg border ${
         highlight
           ? danger
-            ? 'bg-red-50 border-red-200'
-            : 'bg-indigo-50 border-indigo-200'
-          : 'bg-white border-gray-200'
+            ? 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800'
+            : 'bg-indigo-50 dark:bg-indigo-900/20 border-indigo-200 dark:border-indigo-800'
+          : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700'
       }`}
     >
       <div className="flex items-center gap-2 mb-1">
         <span className="text-xl">{icon}</span>
-        <span className="text-sm text-gray-500">{label}</span>
+        <span className="text-sm text-gray-500 dark:text-gray-400">{label}</span>
       </div>
       <span
         className={`text-2xl font-bold ${
-          highlight ? (danger ? 'text-red-600' : 'text-indigo-600') : 'text-gray-900'
+          highlight ? (danger ? 'text-red-600 dark:text-red-400' : 'text-indigo-600 dark:text-indigo-400') : 'text-gray-900 dark:text-white'
         }`}
       >
         {value}

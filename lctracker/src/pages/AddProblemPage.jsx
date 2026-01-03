@@ -51,20 +51,20 @@ export default function AddProblemPage() {
   };
 
   const inputClass =
-    'w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none';
-  const labelClass = 'block text-sm font-medium text-gray-700 mb-1';
+    'w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none bg-white dark:bg-gray-800 dark:text-white dark:placeholder-gray-400';
+  const labelClass = 'block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1';
 
   return (
     <div className="max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">Add Problem</h1>
+      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Add Problem</h1>
 
       {error && (
-        <div className="mb-4 bg-red-50 border border-red-200 rounded-lg p-4 text-red-700">
+        <div className="mb-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 text-red-700 dark:text-red-400">
           {error}
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-6 bg-white p-6 rounded-lg border border-gray-200">
+      <form onSubmit={handleSubmit} className="space-y-6 bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700">
         {/* Title */}
         <div>
           <label htmlFor="title" className={labelClass}>
@@ -120,7 +120,7 @@ export default function AddProblemPage() {
         <div>
           <label htmlFor="tags" className={labelClass}>
             Tags
-            <span className="text-gray-400 font-normal ml-1">(comma-separated)</span>
+            <span className="text-gray-400 dark:text-gray-500 font-normal ml-1">(comma-separated)</span>
           </label>
           <input
             type="text"
@@ -193,7 +193,7 @@ export default function AddProblemPage() {
           <button
             type="button"
             onClick={() => navigate(-1)}
-            className="px-6 py-2 text-gray-600 font-medium hover:text-gray-800"
+            className="px-6 py-2 text-gray-600 dark:text-gray-400 font-medium hover:text-gray-800 dark:hover:text-gray-200"
           >
             Cancel
           </button>

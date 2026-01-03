@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from './contexts/ThemeContext';
 import Layout from './components/Layout';
 import TodayPage from './pages/TodayPage';
 import AddProblemPage from './pages/AddProblemPage';
@@ -9,7 +10,8 @@ import StatsPage from './pages/StatsPage';
 
 function App() {
   return (
-    <BrowserRouter>
+    <ThemeProvider>
+      <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<TodayPage />} />
@@ -20,7 +22,8 @@ function App() {
           <Route path="stats" element={<StatsPage />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 

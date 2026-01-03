@@ -6,11 +6,11 @@ import TagChips from '../components/TagChips';
 import { formatDateTime, formatRelativeDate, getMasteryLabel } from '../utils/formatters';
 
 const OUTCOME_STYLES = {
-  PASS: 'bg-green-100 text-green-700',
-  SHAKY: 'bg-yellow-100 text-yellow-700',
-  FAIL: 'bg-red-100 text-red-700',
-  SKIP: 'bg-gray-100 text-gray-700',
-  POSTPONE: 'bg-blue-100 text-blue-700',
+  PASS: 'bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-300',
+  SHAKY: 'bg-yellow-100 dark:bg-yellow-900/40 text-yellow-700 dark:text-yellow-300',
+  FAIL: 'bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-300',
+  SKIP: 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300',
+  POSTPONE: 'bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300',
 };
 
 const OUTCOME_ICONS = {
@@ -126,14 +126,14 @@ export default function ProblemDetailPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="text-gray-500">Loading...</div>
+        <div className="text-gray-500 dark:text-gray-400">Loading...</div>
       </div>
     );
   }
 
   if (error || !problem) {
     return (
-      <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700">
+      <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 text-red-700 dark:text-red-400">
         Error: {error || 'Problem not found'}
       </div>
     );
@@ -147,7 +147,7 @@ export default function ProblemDetailPage() {
       <div className="flex items-start justify-between">
         <div>
           <div className="flex items-center gap-3 mb-2">
-            <h1 className="text-2xl font-bold text-gray-900">{problem.title}</h1>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{problem.title}</h1>
             <DifficultyBadge difficulty={problem.difficulty} />
           </div>
           <TagChips tags={problem.tags} />
@@ -156,7 +156,7 @@ export default function ProblemDetailPage() {
               href={problem.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block mt-2 text-indigo-600 hover:text-indigo-800 text-sm"
+              className="inline-block mt-2 text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 text-sm"
             >
               Open on {problem.platform} →
             </a>
@@ -164,45 +164,45 @@ export default function ProblemDetailPage() {
         </div>
         <button
           onClick={handleDelete}
-          className="text-red-600 hover:text-red-800 text-sm"
+          className="text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-300 text-sm"
         >
           Delete
         </button>
       </div>
 
       {/* Scheduling Info */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <h2 className="text-lg font-semibold text-gray-900 mb-3">Scheduling</h2>
+      <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4">
+        <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Scheduling</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div>
-            <span className="text-sm text-gray-500">Next Due</span>
-            <p className={`font-medium ${isOverdue ? 'text-red-600' : 'text-gray-900'}`}>
+            <span className="text-sm text-gray-500 dark:text-gray-400">Next Due</span>
+            <p className={`font-medium ${isOverdue ? 'text-red-600 dark:text-red-400' : 'text-gray-900 dark:text-white'}`}>
               {formatRelativeDate(problem.next_due_date)}
             </p>
           </div>
           <div>
-            <span className="text-sm text-gray-500">Interval</span>
-            <p className="font-medium text-gray-900">{problem.interval_days} days</p>
+            <span className="text-sm text-gray-500 dark:text-gray-400">Interval</span>
+            <p className="font-medium text-gray-900 dark:text-white">{problem.interval_days} days</p>
           </div>
           <div>
-            <span className="text-sm text-gray-500">Mastery</span>
-            <p className="font-medium text-gray-900">{getMasteryLabel(problem.mastery_stage)}</p>
+            <span className="text-sm text-gray-500 dark:text-gray-400">Mastery</span>
+            <p className="font-medium text-gray-900 dark:text-white">{getMasteryLabel(problem.mastery_stage)}</p>
           </div>
           <div>
-            <span className="text-sm text-gray-500">Streak</span>
-            <p className="font-medium text-gray-900">{problem.consecutive_successes} passes</p>
+            <span className="text-sm text-gray-500 dark:text-gray-400">Streak</span>
+            <p className="font-medium text-gray-900 dark:text-white">{problem.consecutive_successes} passes</p>
           </div>
         </div>
       </div>
 
       {/* Notes */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
+      <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4">
         <div className="flex items-center justify-between mb-3">
-          <h2 className="text-lg font-semibold text-gray-900">Notes</h2>
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Notes</h2>
           {!isEditingNotes && (
             <button
               onClick={startEditingNotes}
-              className="text-indigo-600 hover:text-indigo-800 text-sm font-medium"
+              className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 text-sm font-medium"
             >
               Edit
             </button>
@@ -212,7 +212,7 @@ export default function ProblemDetailPage() {
         {isEditingNotes ? (
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
                 Trick / Key Insight
               </label>
               <textarea
@@ -222,11 +222,11 @@ export default function ProblemDetailPage() {
                 }
                 rows={3}
                 placeholder="What's the key insight or trick to solve this problem?"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none resize-none"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none resize-none bg-white dark:bg-gray-800 dark:text-white dark:placeholder-gray-400"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
                 Common Mistakes
               </label>
               <textarea
@@ -236,11 +236,11 @@ export default function ProblemDetailPage() {
                 }
                 rows={3}
                 placeholder="What mistakes did you make or should watch out for?"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none resize-none"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none resize-none bg-white dark:bg-gray-800 dark:text-white dark:placeholder-gray-400"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
                 Edge Cases
               </label>
               <textarea
@@ -250,7 +250,7 @@ export default function ProblemDetailPage() {
                 }
                 rows={3}
                 placeholder="What edge cases should you consider?"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none resize-none"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none resize-none bg-white dark:bg-gray-800 dark:text-white dark:placeholder-gray-400"
               />
             </div>
             <div className="flex gap-2">
@@ -264,7 +264,7 @@ export default function ProblemDetailPage() {
               <button
                 onClick={cancelEditingNotes}
                 disabled={savingNotes}
-                className="px-4 py-2 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 transition-colors disabled:opacity-50"
+                className="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-medium rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors disabled:opacity-50"
               >
                 Cancel
               </button>
@@ -276,33 +276,33 @@ export default function ProblemDetailPage() {
               <>
                 {problem.notes_trick && (
                   <div>
-                    <span className="text-sm font-medium text-gray-700">Trick / Key Insight:</span>
-                    <p className="text-gray-600 mt-1">{problem.notes_trick}</p>
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-200">Trick / Key Insight:</span>
+                    <p className="text-gray-600 dark:text-gray-300 mt-1">{problem.notes_trick}</p>
                   </div>
                 )}
                 {problem.notes_mistakes && (
                   <div>
-                    <span className="text-sm font-medium text-gray-700">Common Mistakes:</span>
-                    <p className="text-gray-600 mt-1">{problem.notes_mistakes}</p>
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-200">Common Mistakes:</span>
+                    <p className="text-gray-600 dark:text-gray-300 mt-1">{problem.notes_mistakes}</p>
                   </div>
                 )}
                 {problem.notes_edge_cases && (
                   <div>
-                    <span className="text-sm font-medium text-gray-700">Edge Cases:</span>
-                    <p className="text-gray-600 mt-1">{problem.notes_edge_cases}</p>
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-200">Edge Cases:</span>
+                    <p className="text-gray-600 dark:text-gray-300 mt-1">{problem.notes_edge_cases}</p>
                   </div>
                 )}
               </>
             ) : (
-              <p className="text-gray-500 text-sm">No notes yet. Click Edit to add notes.</p>
+              <p className="text-gray-500 dark:text-gray-400 text-sm">No notes yet. Click Edit to add notes.</p>
             )}
           </div>
         )}
       </div>
 
       {/* Log Attempt Form */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <h2 className="text-lg font-semibold text-gray-900 mb-3">Log Attempt</h2>
+      <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4">
+        <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Log Attempt</h2>
         <form onSubmit={handleAttemptSubmit} className="space-y-4">
           <div className="flex flex-wrap gap-2">
             {['PASS', 'SHAKY', 'FAIL', 'SKIP'].map((outcome) => (
@@ -312,8 +312,8 @@ export default function ProblemDetailPage() {
                 onClick={() => setAttemptForm((prev) => ({ ...prev, outcome }))}
                 className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                   attemptForm.outcome === outcome
-                    ? OUTCOME_STYLES[outcome] + ' ring-2 ring-offset-2 ring-gray-400'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    ? OUTCOME_STYLES[outcome] + ' ring-2 ring-offset-2 ring-gray-400 dark:ring-offset-gray-800'
+                    : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                 }`}
               >
                 {OUTCOME_ICONS[outcome]} {outcome}
@@ -323,7 +323,7 @@ export default function ProblemDetailPage() {
 
           <div className="flex gap-4">
             <div className="w-32">
-              <label className="block text-sm text-gray-600 mb-1">Time (min)</label>
+              <label className="block text-sm text-gray-600 dark:text-gray-300 mb-1">Time (min)</label>
               <input
                 type="number"
                 value={attemptForm.time_spent_minutes}
@@ -331,11 +331,11 @@ export default function ProblemDetailPage() {
                   setAttemptForm((prev) => ({ ...prev, time_spent_minutes: e.target.value }))
                 }
                 placeholder="15"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none bg-white dark:bg-gray-800 dark:text-white dark:placeholder-gray-400"
               />
             </div>
             <div className="flex-1">
-              <label className="block text-sm text-gray-600 mb-1">Notes</label>
+              <label className="block text-sm text-gray-600 dark:text-gray-300 mb-1">Notes</label>
               <input
                 type="text"
                 value={attemptForm.notes}
@@ -343,7 +343,7 @@ export default function ProblemDetailPage() {
                   setAttemptForm((prev) => ({ ...prev, notes: e.target.value }))
                 }
                 placeholder="Optional notes about this attempt..."
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none bg-white dark:bg-gray-800 dark:text-white dark:placeholder-gray-400"
               />
             </div>
           </div>
@@ -359,22 +359,22 @@ export default function ProblemDetailPage() {
       </div>
 
       {/* Attempt History */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <h2 className="text-lg font-semibold text-gray-900 mb-3">
+      <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4">
+        <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
           Attempt History
-          <span className="text-sm font-normal text-gray-500 ml-2">
+          <span className="text-sm font-normal text-gray-500 dark:text-gray-400 ml-2">
             ({problem.attempts?.length || 0} attempts)
           </span>
         </h2>
 
         {!problem.attempts || problem.attempts.length === 0 ? (
-          <p className="text-gray-500 text-sm">No attempts logged yet.</p>
+          <p className="text-gray-500 dark:text-gray-400 text-sm">No attempts logged yet.</p>
         ) : (
           <div className="space-y-2">
             {problem.attempts.map((attempt) => (
               <div
                 key={attempt.id}
-                className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0"
+                className="flex items-center justify-between py-2 border-b border-gray-100 dark:border-gray-700 last:border-0"
               >
                 <div className="flex items-center gap-3 flex-wrap">
                   <span
@@ -383,25 +383,25 @@ export default function ProblemDetailPage() {
                     {OUTCOME_ICONS[attempt.outcome]} {attempt.outcome}
                   </span>
                   {attempt.stage_before !== null && attempt.stage_after !== null && (
-                    <span className="text-sm text-gray-600">
+                    <span className="text-sm text-gray-600 dark:text-gray-300">
                       Stage {attempt.stage_before} → Stage {attempt.stage_after}
                     </span>
                   )}
                   {attempt.next_due_date_after && (
-                    <span className="text-sm text-gray-500">
+                    <span className="text-sm text-gray-500 dark:text-gray-400">
                       Due: {formatRelativeDate(attempt.next_due_date_after)}
                     </span>
                   )}
                   {attempt.time_spent_minutes && (
-                    <span className="text-sm text-gray-500">
+                    <span className="text-sm text-gray-500 dark:text-gray-400">
                       {attempt.time_spent_minutes} min
                     </span>
                   )}
                   {attempt.notes && (
-                    <span className="text-sm text-gray-600 italic">{attempt.notes}</span>
+                    <span className="text-sm text-gray-600 dark:text-gray-300 italic">{attempt.notes}</span>
                   )}
                 </div>
-                <span className="text-sm text-gray-400 whitespace-nowrap ml-2">
+                <span className="text-sm text-gray-400 dark:text-gray-500 whitespace-nowrap ml-2">
                   {formatDateTime(attempt.attempted_at)}
                 </span>
               </div>
@@ -411,7 +411,7 @@ export default function ProblemDetailPage() {
       </div>
 
       {/* Back Link */}
-      <Link to="/library" className="inline-block text-indigo-600 hover:text-indigo-800">
+      <Link to="/library" className="inline-block text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300">
         ← Back to Library
       </Link>
     </div>

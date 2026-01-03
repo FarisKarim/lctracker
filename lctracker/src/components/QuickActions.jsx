@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { problemsApi } from '../api/client';
 
 const ACTIONS = [
-  { outcome: 'PASS', icon: '✅', label: 'Pass', bg: 'bg-green-100', text: 'text-green-700', hoverBg: 'hover:bg-green-200' },
-  { outcome: 'SHAKY', icon: '🟨', label: 'Shaky', bg: 'bg-yellow-100', text: 'text-yellow-700', hoverBg: 'hover:bg-yellow-200' },
-  { outcome: 'FAIL', icon: '❌', label: 'Fail', bg: 'bg-red-100', text: 'text-red-700', hoverBg: 'hover:bg-red-200' },
-  { outcome: 'POSTPONE', icon: '📅', label: 'Later', bg: 'bg-blue-100', text: 'text-blue-700', hoverBg: 'hover:bg-blue-200' },
+  { outcome: 'PASS', icon: '✅', label: 'Pass', bg: 'bg-green-100 dark:bg-green-900/40', text: 'text-green-700 dark:text-green-300', hoverBg: 'hover:bg-green-200 dark:hover:bg-green-900/60' },
+  { outcome: 'SHAKY', icon: '🟨', label: 'Shaky', bg: 'bg-yellow-100 dark:bg-yellow-900/40', text: 'text-yellow-700 dark:text-yellow-300', hoverBg: 'hover:bg-yellow-200 dark:hover:bg-yellow-900/60' },
+  { outcome: 'FAIL', icon: '❌', label: 'Fail', bg: 'bg-red-100 dark:bg-red-900/40', text: 'text-red-700 dark:text-red-300', hoverBg: 'hover:bg-red-200 dark:hover:bg-red-900/60' },
+  { outcome: 'POSTPONE', icon: '📅', label: 'Later', bg: 'bg-blue-100 dark:bg-blue-900/40', text: 'text-blue-700 dark:text-blue-300', hoverBg: 'hover:bg-blue-200 dark:hover:bg-blue-900/60' },
 ];
 
 export default function QuickActions({ problemId, onAction }) {

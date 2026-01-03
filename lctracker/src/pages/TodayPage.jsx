@@ -33,14 +33,14 @@ export default function TodayPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="text-gray-500">Loading...</div>
+        <div className="text-gray-500 dark:text-gray-400">Loading...</div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700">
+      <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 text-red-700 dark:text-red-400">
         Error: {error}
       </div>
     );
@@ -49,27 +49,27 @@ export default function TodayPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Today</h1>
-        <p className="text-gray-500">{today}</p>
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Today</h1>
+        <p className="text-gray-500 dark:text-gray-400">{today}</p>
       </div>
 
       {/* Due Today Section */}
       <section>
-        <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
           <span>📋</span>
           Due Today
           {data.due.length > 0 && (
-            <span className="bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-full text-sm">
+            <span className="bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 px-2 py-0.5 rounded-full text-sm">
               {data.due.length}
             </span>
           )}
         </h2>
 
         {data.due.length === 0 ? (
-          <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
+          <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-6 text-center">
             <span className="text-4xl mb-2 block">🎉</span>
-            <p className="text-green-700 font-medium">All caught up!</p>
-            <p className="text-green-600 text-sm">No problems due for review today.</p>
+            <p className="text-green-700 dark:text-green-400 font-medium">All caught up!</p>
+            <p className="text-green-600 dark:text-green-500 text-sm">No problems due for review today.</p>
           </div>
         ) : (
           <div className="space-y-3">
@@ -87,10 +87,10 @@ export default function TodayPage() {
       {/* Optional New Section */}
       {data.new.length > 0 && (
         <section>
-          <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
             <span>✨</span>
             New Problems
-            <span className="text-sm font-normal text-gray-500">
+            <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
               (never attempted)
             </span>
           </h2>
