@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+lctracker/node_modules/
+
+# Python
+venv/
+server/venv/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+.eggs/
+
+# Database
+*.db
+server/*.db
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Build output
+dist/
+build/
+lctracker/dist/
+
+# Claude Code
+CLAUDE.md
+.claude/
+
+# Logs
+*.log
+npm-debug.log*
