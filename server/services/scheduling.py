@@ -36,11 +36,12 @@ def update_schedule(problem: Problem, outcome: str) -> None:
         problem.next_due_date = now + timedelta(days=new_interval)
 
     elif outcome == Outcome.SHAKY.value:
-        # Drop one stage, due in 3 days
+        # Drop one stage, use that stage's interval
         problem.mastery_stage = max(problem.mastery_stage - 1, 0)
         problem.consecutive_successes = 0
-        problem.interval_days = 3
-        problem.next_due_date = now + timedelta(days=3)
+        new_interval = INTERVAL_LADDER[problem.mastery_stage]
+        problem.interval_days = new_interval
+        problem.next_due_date = now + timedelta(days=new_interval)
 
     elif outcome == Outcome.FAIL.value:
         # Reset to stage 0, due tomorrow
